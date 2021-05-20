@@ -70,6 +70,7 @@
             requestAnimationFrame(animate);   
             tierra.geometry.applyMatrix4( rotationY );
             luna.geometry.applyMatrix4( rotationY );
+            sol.geometry.applyMatrix4( rotationY );
             renderer.render( scene, camera );
         }
         animate();
