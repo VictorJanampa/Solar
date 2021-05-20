@@ -35,13 +35,41 @@
        
         // Defina aqui las matrices de transofmracion
         ////////////////////////////////////////////////////////////////
-        
+        const rotationY = new THREE . Matrix4 () ;
+        const traslationT = new THREE . Matrix4 () ;
+        const traslationL = new THREE . Matrix4 () ;
+                
+        var beta=0.02;
+        rotationY.set (
+        Math.cos(beta),0,-Math.sin(beta), 0, 
+        0, 1, 0, 0,
+        Math.sin(beta), 0,Math.cos(beta), 0, 
+        0, 0, 0, 1
+        );
+        var tierraOrbitRadius=20;
+        var lunaOrbitRadius=5;
+        var speed=0.1;
+        var OrbitAngle =1;
+        OrbitAngle+=speed;
+        var radians = OrbitAngle * Math.PI / 180;
+        traslationT.set(
+        1, 0, 0, Math.cos(1.05),
+        0, 1, 0, 0,
+        0, 0, 1, Math.sin(1.05),
+        0, 0, 0, 0
+        );
+        traslationT.set(
+        1, 0, 0, Math.cos(1.05),
+        0, 1, 0, 0,
+        0, 0, 1, Math.sin(1.05),
+        0, 0, 0, 0
+        );
         ////////////////////////////////////////////////////////////////
 
         var animate = function(){
             requestAnimationFrame(animate);   
-            
-              
+            tierra.geometry.applyMatrix4( rotationY );
+            luna.geometry.applyMatrix4( rotationY );
             renderer.render( scene, camera );
         }
         animate();
